@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoş Geldiniz!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: linear-gradient(to right bottom, rgba(198, 226, 255, 0.8), rgba(224, 191, 230, 0.8)), url('1000066665.jpg') no-repeat center center / cover;
+            background-blend-mode: overlay;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            position: relative;
+        }
+
+        .welcome-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 50px 70px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(5px);
+            transform: scale(0.95);
+            animation: fadeInScale 0.8s ease-out forwards;
+            position: relative;
+            z-index: 10;
+        }
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #e66465;
+            margin-bottom: 40px;
+            font-size: 3.5em;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .button-group {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+        .choice-button {
+            background-color: #7a0050;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .choice-button:hover {
+            background-color: #a3006d;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .choice-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Birlikte Bir Hikaye Yazalım</h1>
+        <div class="button-group">
+            <a href="password.html?user=yusuf" class="choice-button">Yusuf</a>
+            <a href="password.html?user=ilayda" class="choice-button">İlayda</a>
+        </div>
+    </div>
+</body>
+</html>

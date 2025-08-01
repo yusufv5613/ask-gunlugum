@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aşkımızın Sitesi - Yusuf & İlayda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Genel Stil Ayarları */
+        body {
+            background: linear-gradient(to right top, #b2d8d8, #e0f2f2); /* Yumuşak pastel mavi-yeşil degrade */
+            color: #333; /* Koyu gri yazılar */
+            font-family: 'Poppins', sans-serif; /* Genel font */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden; /* YATAY KAYDIRMAYI ENGELLE */
+            line-height: 1.6;
+            transition: background-color 0.5s ease; /* Arka plan rengi değişimi için geçiş */
+        }
+
+        /* Ana İçerik Kapsayıcısı */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Başlık Alanı (Header) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0f2f2;
+            padding-bottom: 20px;
+        }
+        .date-display-area {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer; /* Takvim açılması için tıklanabilir */
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .date-display-area:hover {
+            background-color: #f0f0f0;
+        }
+        .site-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em;
+            font-weight: 700;
+            color: #e66465;
+            text-align: center;
+            flex-grow: 1;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        .menu-button {
+            font-size: 28px;
+            cursor: pointer;
+            color: #6a0572;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .menu-button:hover {
+            color: #8e0797;
+        }
+
+
+        /* İçerik Bölümleri Genel Stil */
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.8em;
+            color: #6a0572;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Ana İçerik Gösterim Alanı (Fotoğraflar ve Yazı) */
+        #mainContentDisplay {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Fotoğraf ve Video Alanı */
+        .content-media-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            justify-content: center;
+        }
+        .media-item {
+            width: 100%;
+            height: 220px;
+            border: 2px solid #e0bfe6;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
+            color: #888;
+            box-sizing: border-box;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .media-item img, .media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Yazı Alanları */
+        .content-text-area {
+            width: 100%;
+            padding: 25px;
+            border: 2px solid #e0bfe6;
+            background-color: #fff;
+            box-sizing: border-box;
+            border-radius: 12px;
+            font-size: 1.1em;
+            color: #444;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Ayırıcı Çizgiler */
+        .separator {
+            width: 80%;
+            border-top: 1px solid #ddd;
+            margin: 35px auto;
+        }
+
+        /* Ruh Hali Göstergesi (Ana Sayfada) */
+        .mood-section-home {
+            padding: 20px;
+            border: 2px solid #e0bfe6;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .mood-section-home h3 {
+            font-family: 'Merriweather', serif;
+            color: #e66465;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .mood-section-home select, .mood-section-home button {
+            width: calc(100% - 20px);
+            padding: 12px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .mood-section-home button {
+            background-color: #6a0572;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .mood-section-home button:hover {
+            background-color: #8e0797;
+        }
+        .mood-section-home p {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 15px;
+        }
+        #myMoodDisplay, #partnerMoodDisplay {
+            font-weight: bold;
+            color: #e66465;
+        }
+        .mood-reason-input {
+            margin-top: 10px;
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+
+        /* Şiir Bölümleri */
+        .poem-section h3 {
+            font-family: 'Merriweather', serif;
+            color: #e66465;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .poem-section .poem-buttons button {
+            background-color: #6a0572;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        .poem-section .poem-buttons button:hover {
+            background-color: #8e0797;
+        }
+        .poem-display-area {
+            margin-top: 20px;
+            border-top: 1px dashed #eee;
+            padding-top: 15px;
+            text-align: left;
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: #fcfcfc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .poem-display-area h4 {
+            color: #6a0572;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .poem-display-area p {
+            font-size: 1em;
+            color: #444;
+            margin-bottom: 15px;
+            white-space: pre-wrap; /* Şiirdeki satır sonlarını korur */
+        }
+
+        /* Form Stillleri (Genel) */
+        .form-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        .form-section input[type="text"],
+        .form-section input[type="date"],
+        .form-section textarea,
+        .form-section select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .form-section textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-section .media-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-section .media-input-group input {
+            flex-grow: 1;
+            margin-bottom: 0;
+        }
+        .form-section .media-input-group button {
+            padding: 10px 15px;
+            font-size: 0.9em;
+            margin-bottom: 0;
+        }
+        .form-section .media-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .form-section .form-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-section .form-buttons button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .form-section .form-buttons .save-button {
+            background-color: #6a0572;
+            color: white;
+            border: none;
+        }
+        .form-section .form-buttons .save-button:hover {
+            background-color: #8e0797;
+            transform: translateY(-2px);
+        }
+        .form-section .form-buttons .cancel-button,
+        .form-section .form-buttons .delete-button {
+            background-color: #ccc;
+            color: #333;
+            border: 1px solid #bbb;
+        }
+        .form-section .form-buttons .cancel-button:hover,
+        .form-section .form-buttons .delete-button:hover {
+            background-color: #bbb;
+            transform: translateY(-2px);
+        }
+        .form-section .form-buttons .delete-button {
+            background-color: #e66465;
+            color: white;
+            border: none;
+        }
+        .form-section .form-buttons .delete-button:hover {
+            background-color: #ff7f7f;
+        }
+
+        /* Todo & Movies Sections */
+        .todo-movie-section h3 {
+            font-family: 'Merriweather', serif;
+            color: #e66465;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .list-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .list-box {
+            flex: 1;
+            min-width: 280px;
+            background-color: #fff;
+            border: 2px solid #e0bfe6;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .list-box h4 {
+            color: #6a0572;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+        }
+        .list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 1em;
+            color: #444;
+        }
+        .list-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+            accent-color: #e66465;
+        }
+        .list-item.completed label {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .list-input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .add-button {
+            background-color: #6a0572;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+        .add-button:hover {
+            background-color: #8e0797;
+        }
+
+        /* Takvim Menüsü */
+        .calendar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+        .calendar-content {
+            background-color: #fff;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: black;
+            width: 90%;
+            max-width: 500px;
+        }
+        .calendar-content h2 {
+            margin-top: 0;
+            color: #e66465;
+            font-family: 'Merriweather', serif;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+        .calendar-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .calendar-nav-buttons button {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #6a0572;
+            transition: color 0.3s ease;
+        }
+        .calendar-nav-buttons button:hover {
+            color: #e66465;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .day-name, .day-number {
+            padding: 10px;
+            border: 1px solid #f0f0f0;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        .day-name {
+            font-weight: bold;
+            background-color: #f2f2f2;
+            color: #6a0572;
+        }
+        .day-number {
+            cursor: pointer;
+            background-color: #fff;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            color: #333;
+        }
+        .day-number:hover {
+            background-color: #e0f2f2;
+            transform: translateY(-2px);
+        }
+        .day-number.has-content {
+            background-color: #ffe5e5;
+            border-color: #ffcccc;
+            position: relative;
+        }
+        .day-number.has-content::after {
+            content: '❤️';
+            position: absolute;
+            bottom: 3px;
+            right: 3px;
+            font-size: 0.9em;
+            color: red;
+        }
+        .day-number.selected-date { /* Seçili tarih için yeni stil */
+            background-color: #a3006d;
+            color: white;
+            border-color: #a3006d;
+        }
+        .close-calendar {
+            background-color: #e66465;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .close-calendar:hover {
+            background-color: #ff7f7f;
+        }
+
+        /* Sidebar Menu (Sol taraftan açılan menü) */
+        .sidebar-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1001;
+            top: 0;
+            left: 0;
+            background-color: #fcfcfc;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-menu h3 { /* Yeni eklenen menü başlığı */
+            color: #e66465;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        .sidebar-menu a {
+            padding: 15px 25px 15px 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #6a0572;
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px dashed #eee;
+        }
+        .sidebar-menu a:hover {
+            color: #e66465;
+            background-color: #f0f0f0;
+        }
+        .sidebar-menu .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #333;
+            cursor: pointer;
+        }
+        .sidebar-menu .closebtn:hover {
+            color: #e66465;
+        }
+        .sidebar-menu .active-menu-item {
+            background-color: #e0f2f2;
+            font-weight: bold;
+        }
+
+        /* Sayfa bölümlerini gizleme */
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        /* İlk Tanışma Sayacı */
+        .anniversary-counter {
+            text-align: center;
+            font-size: 1.5em;
+            font-family: 'Dancing Script', cursive;
+            color: #e66465;
+            margin-top: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Galeri için */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-item-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 0.9em;
+            padding: 5px;
+            text-align: center;
+            display: none;
+        }
+        .gallery-item:hover .gallery-item-title {
+            display: block;
+        }
+        .gallery-item.video-item::after {
+            content: '▶️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        /* Özel Günler */
+        .special-day-list {
+            list-style: none;
+            padding: 0;
+        }
+        .special-day-list li {
+            background-color: #fdfdfd;
+            border: 1px solid #ffe5e5;
+            border-left: 5px solid #e66465;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer; /* Düzenlenebilir olduğunu belirtir */
+            transition: background-color 0.2s ease;
+        }
+        .special-day-list li:hover {
+            background-color: #fff0f0;
+        }
+        .special-day-list li span:first-child {
+            font-weight: bold;
+            color: #6a0572;
+            font-size: 1.1em;
+        }
+        .special-day-list li span:last-child {
+            color: #e66465;
+            font-style: italic;
+        }
+
+        /* Medya Önizleme ve Silme Butonları */
+        .media-item-thumbnail {
+            position: relative;
+            width: 100px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .media-item-thumbnail img, .media-item-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .remove-media-btn {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 0 0 0 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+            padding: 3px 6px;
+            line-height: 1;
+            z-index: 10;
+        }
+
+        /* Seçim listeleri için stil */
+        .selection-list {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #e0bfe6;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #fcfcfc;
+        }
+        .selection-list div {
+            padding: 10px;
+            border-bottom: 1px dashed #eee;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .selection-list div:last-child {
+            border-bottom: none;
+        }
+        .selection-list div:hover {
+            background-color: #e0f2f2;
+        }
+        .selection-list div.selected {
+            background-color: #ffe5e5;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="menu-button" id="menuButton">
+                <span style="font-size: 35px;">&#9776;</span> MENÜ
+            </div>
+            <div class="date-display-area" id="displayDate"></div>
+            <div class="site-title">Yusuf & İlayda'nın Aşk Günlüğü</div>
+        </header>
+
+        <div id="homePage" class="page-section active">
+            <div class="anniversary-counter" id="anniversaryCounter"></div>
+            <h2 class="section-title">Bugüne Ait Anı (Veya Seçili Anı)</h2>
+            <div id="mainContentDisplay">
+                <div class="content-media-section">
+                    <div class="media-item"><img src="https://via.placeholder.com/300x220?text=Hoş+Geldiniz!" alt="Placeholder"></div>
+                    <div class="media-item"><img src="https://via.placeholder.com/300x220?text=Bir+Anı+Seçin" alt="Placeholder"></div>
+                </div>
+                <div class="content-text-area">
+                    <p>Takvimden bir gün seçerek veya menüdeki diğer bölümleri keşfederek aşk hikayemize başlayın!</p>
+                </div>
+            </div>
+
+            <div class="mood-section-home">
+                <h2 class="section-title">Bugünkü Ruh Halimiz</h2>
+                <h3>Senin Ruh Halin:</h3>
+                <select id="moodSelector">
+                    <option value="happy">😄 Mutlu</option>
+                    <option value="sad">😔 Üzgün</option>
+                    <option value="excited">🥳 Heyecanlı</option>
+                    <option value="calm">😌 Sakin</option>
+                    <option value="angry">😡 Kızgın</option>
+                    <option value="loving">💖 Aşık</option>
+                </select>
+                <textarea id="moodReasonInput" class="mood-reason-input" placeholder="Neden bu ruh halindesin?"></textarea>
+                <button onclick="saveMood()">Ruh Halimi Kaydet</button>
+                <p>Senin son ruh halin: <span id="myMoodDisplay">Bilinmiyor</span></p>
+                <p><strong><span id="partnerNameDisplay">Partnerin</span>'in son ruh hali: <span id="partnerMoodDisplay">Bilinmiyor</span></strong></p>
+            </div>
+        </div>
+
+        <div id="galleryPage" class="page-section">
+            <h2 class="section-title">Tüm Anılarımız (Galeri)</h2>
+            <div class="content-text-area">
+                <button class="add-button" onclick="openMemoryForm()">Yeni Anı Ekle</button>
+                <div id="galleryGrid" class="gallery-grid">
+                    <p style="text-align: center; width: 100%;">Galeri yükleniyor...</p>
+                </div>
+            </div>
+
+            <div id="memoryFormSection" class="form-section" style="display: none;">
+                <h3>Anı Ekle / Düzenle</h3>
+                <input type="hidden" id="memoryDateKey">
+                <label for="memoryTitle">Başlık:</label>
+                <input type="text" id="memoryTitle" placeholder="Anının başlığı" required>
+
+                <label for="memoryDate">Tarih:</label>
+                <input type="date" id="memoryDate" required>
+
+                <label for="memoryText">Anı Metni:</label>
+                <textarea id="memoryText" placeholder="Bu güne ait anılarınızı yazın..." required></textarea>
+
+                <label>Medya (Fotoğraf/Video URL'si):</label>
+                <div id="mediaInputs">
+                    <div class="media-input-group">
+                        <input type="text" class="media-url-input" placeholder="Resim veya Video URL'si (örn: https://...)" oninput="updateMediaPreview()">
+                        <button type="button" onclick="addMediaInput()">+</button>
+                    </div>
+                </div>
+                <div id="mediaPreview" class="media-preview">
+                    </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="save-button" onclick="saveMemory()">Kaydet</button>
+                    <button type="button" class="delete-button" onclick="deleteMemory()" style="display: none;" id="deleteMemoryButton">Anıyı Sil</button>
+                    <button type="button" class="cancel-button" onclick="closeMemoryForm()">İptal</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="poemPage" class="page-section">
+            <h2 class="section-title">Şiir Köşesi</h2>
+            <div class="content-text-area poem-section">
+                <div class="poem-buttons">
+                    <button onclick="showPoems('ilayda')">İlayda'ma Şiirler</button>
+                    <button onclick="showPoems('yusuf')">Yusuf'uma Şiirler</button>
+                    <button class="add-button" onclick="openPoemForm()">Yeni Şiir Ekle</button>
+                </div>
+                <div id="poemDisplay" class="poem-display-area">
+                    <p style="text-align: center;">Yukarıdan bir isim seçerek şiirleri görüntüleyin.</p>
+                </div>
+            </div>
+
+            <div id="poemFormSection" class="form-section" style="display: none;">
+                <h3>Şiir Ekle / Düzenle</h3>
+                <input type="hidden" id="poemId"> <label for="poemTitle">Şiir Başlığı:</label>
+                <input type="text" id="poemTitle" placeholder="Şiirin başlığı" required>
+
+                <label for="poemRecipient">Kime Yazıldı:</label>
+                <select id="poemRecipient">
+                    <option value="ilayda">İlayda'ma</option>
+                    <option value="yusuf">Yusuf'uma</option>
+                </select>
+
+                <label for="poemContent">Şiir Metni:</label>
+                <textarea id="poemContent" placeholder="Şiirinizi buraya yazın..." required></textarea>
+
+                <div class="form-buttons">
+                    <button type="button" class="save-button" onclick="savePoem()">Kaydet</button>
+                    <button type="button" class="delete-button" onclick="deletePoem()" style="display: none;" id="deletePoemButton">Şiiri Sil</button>
+                    <button type="button" class="cancel-button" onclick="closePoemForm()">İptal</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="todoPage" class="page-section">
+            <h2 class="section-title">Birlikte Yapılacaklar Listesi</h2>
+            <div class="content-text-area todo-movie-section">
+                <div class="list-container">
+                    <div class="list-box">
+                        <h4>Yapılacaklar</h4>
+                        <div id="todoList">
+                        </div>
+                        <input type="text" id="todoInput" placeholder="Yeni görev ekle..." class="list-input">
+                        <button type="button" onclick="addTodo()" class="add-button">Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="moviesPage" class="page-section">
+            <h2 class="section-title">İzlenecek Filmler/Diziler</h2>
+            <div class="content-text-area todo-movie-section">
+                <div class="list-container">
+                    <div class="list-box">
+                        <h4>Filmler & Diziler</h4>
+                        <div id="movieList">
+                        </div>
+                        <input type="text" id="movieInput" placeholder="Yeni film/dizi ekle..." class="list-input">
+                        <button type="button" onclick="addMovie()" class="add-button">Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="specialDaysPage" class="page-section">
+            <h2 class="section-title">Özel Günlerimiz ve Yıldönümlerimiz</h2>
+            <div class="content-text-area">
+                <button class="add-button" onclick="openSpecialDayForm()">Yeni Özel Gün Ekle</button>
+                <ul class="special-day-list" id="specialDayList">
+                    </ul>
+            </div>
+            <div id="specialDayFormSection" class="form-section" style="display: none;">
+                <h3>Özel Gün Ekle / Düzenle</h3>
+                <input type="hidden" id="specialDayId">
+                <label for="specialDayName">Gün Adı:</label>
+                <input type="text" id="specialDayName" placeholder="Örn: İlk tanışma günümüz" required>
+
+                <label for="specialDayDate">Tarih:</label>
+                <input type="date" id="specialDayDate" required>
+
+                <div class="form-buttons">
+                    <button type="button" class="save-button" onclick="saveSpecialDay()">Kaydet</button>
+                    <button type="button" class="delete-button" onclick="deleteSpecialDay()" style="display: none;" id="deleteSpecialDayButton">Günü Sil</button>
+                    <button type="button" class="cancel-button" onclick="closeSpecialDayForm()">İptal</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="aboutUsPage" class="page-section">
+            <h2 class="section-title">Biz Kimiz?</h2>
+            <div class="content-text-area">
+                <div id="aboutUsContentDisplay">
+                    </div>
+                <button class="add-button" onclick="openAboutUsForm()">Hakkımızda Metnini Düzenle</button>
+            </div>
+
+            <div id="aboutUsFormSection" class="form-section" style="display: none;">
+                <h3>Hakkımızda Metnini Düzenle</h3>
+                <label for="aboutUsTitle">Ana Başlık:</label>
+                <input type="text" id="aboutUsTitle" placeholder="Örn: Biz Kimiz?" required>
+
+                <label for="aboutUsIntro">Giriş Metni:</label>
+                <textarea id="aboutUsIntro" placeholder="Giriş paragrafı..." required></textarea>
+
+                <label for="yusufAbout">Yusuf'un Gözünden:</label>
+                <textarea id="yusufAbout" placeholder="Yusuf'un hikayesi..." required></textarea>
+
+                <label for="ilaydaAbout">İlayda'nın Gözünden:</label>
+                <textarea id="ilaydaAbout" placeholder="İlayda'nın hikayesi..." required></textarea>
+
+                <label for="aboutUsConclusion">Sonuç Metni:</label>
+                <textarea id="aboutUsConclusion" placeholder="Kapanış paragrafı..." required></textarea>
+
+                <div class="form-buttons">
+                    <button type="button" class="save-button" onclick="saveAboutUsContent()">Kaydet</button>
+                    <button type="button" class="cancel-button" onclick="closeAboutUsForm()">İptal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="calendar-overlay" id="calendarOverlay">
+        <div class="calendar-content">
+            <h2 id="calendarMonthYear"></h2>
+            <div class="calendar-nav-buttons">
+                <button type="button" onclick="changeMonth(-1)">&#9664; Önceki</button>
+                <button type="button" onclick="changeMonth(1)">Sonraki &#9654;</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid">
+            </div>
+            <button type="button" class="close-calendar" id="closeCalendar">Kapat</button>
+        </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar-menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h3>Menü</h3> <a href="#" onclick="showPage('homePage', this)">🏡 Ana Sayfa</a>
+        <a href="#" onclick="showPage('poemPage', this)">📝 Şiirler</a>
+        <a href="#" onclick="showPage('galleryPage', this)">📸 Anılarımız (Galeri)</a>
+        <a href="#" onclick="showPage('todoPage', this)">✅ Yapılacaklar Listesi</a>
+        <a href="#" onclick="showPage('moviesPage', this)">🎬 İzlenecek Filmler</a>
+        <a href="#" onclick="showPage('specialDaysPage', this)">🗓️ Özel Günler</a>
+        <a href="#" onclick="showPage('aboutUsPage', this)">💬 Hakkımızda</a>
+        <a href="#" onclick="showPage('surprisePage', this)">🎁 Sürpriz Anılar</a> </div>
+
+    <div id="surprisePage" class="page-section">
+        <h2 class="section-title">Sürpriz Anılar</h2>
+        <div class="content-text-area">
+            <p>Her tıkladığında seni rastgele bir anımıza götüreceğim!</p>
+            <button class="add-button" onclick="showRandomMemory()">Bana Sürpriz Yap!</button>
+            <div id="surpriseMemoryDisplay" style="margin-top: 20px;">
+                </div>
+        </div>
+    </div>
+
+
+    <script>
+        let currentUser = '';
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let selectedCalendarDateKey = ''; // Takvimde seçili olan tarihi tutar
+
+        // --- LOCAL STORAGE'DAN YÜKLENECEK VERİLER (Veya Başlangıç Demo Verileri) ---
+        let allContent = {}; // Anı ve medya içerikleri
+        let poems = { ilayda: [], yusuf: [] }; // Şiirler
+        let todos = []; // Yapılacaklar
+        let movies = []; // İzlenecek Filmler
+        let moods = {}; // Ruh halleri (artık neden de tutulacak)
+        let specialDays = []; // Özel günler (artık yönetilebilir)
+        let aboutUsContent = {}; // Hakkımızda metinleri
+
+        // Giriş tarihi (Sayaç için) - Bu tarihi ilk tanıştığınız gün olarak ayarla
+        const startDate = new Date('2024-06-15T00:00:00'); // YYYY-MM-DDT00:00:00
+
+        // --- VERİ YÖNETİMİ (LOCAL STORAGE) ---
+        function loadData() {
+            // Anılar
+            const savedContent = localStorage.getItem('allContent');
+            if (savedContent) {
+                allContent = JSON.parse(savedContent);
+            } else {
+                // İlk kez siteye giriliyorsa varsayılan demo içeriği yükle
+                allContent = {
+                    "2024-6-15": {
+                        id: "2024-6-15",
+                        title: "İlk Tanışmamız",
+                        text: "2024 Haziran 15, hayatımızın dönüm noktası. O gün ilk kez bir araya geldik ve kıvılcımlar uçuştu...",
+                        media: [
+                            { type: "image", src: "https://via.placeholder.com/600x400?text=İlk+Tanışma+Fotoğrafımız+1", alt: "Tanışma 1" },
+                            { type: "image", src: "https://via.placeholder.com/600x400?text=İlk+Tanışma+Fotoğrafımız+2", alt: "Tanışma 2" }
+                        ]
+                    },
+                    "2024-7-20": {
+                        id: "2024-7-20",
+                        title: "Boğazda Romantik Akşam",
+                        text: "Muhteşem bir akşam yemeği. İstanbul'un ışıkları altında, aşkımız daha da parladı...",
+                        media: [
+                            { type: "image", src: "https://via.placeholder.com/600x400?text=Boğaz+Akşamı+1", alt: "Boğaz 1" },
+                            { type: "image", src: "https://via.placeholder.com/600x400?text=Boğaz+Akşamı+2", alt: "Boğaz 2" }
+                        ]
+                    }
+                };
+                saveData('allContent', allContent);
+            }
+
+            // Şiirler
+            const savedPoems = localStorage.getItem('poems');
+            if (savedPoems) {
+                poems = JSON.parse(savedPoems);
+            } else {
+                poems = {
+                    ilayda: [
+                        { id: Date.now() + 'i1', title: "İlayda'ma İlk Şiirim", content: "Gözlerin gökyüzü, gülüşün güneş.\nSenle her anım, tarifsiz bir eş." },
+                        { id: Date.now() + 'i2', title: "Aşkımızın Şarkısı", content: "Deniz kıyısında, el ele yürüdük.\nKalbimiz bir oldu, aşkımız büyüdü." }
+                    ],
+                    yusuf: [
+                        { id: Date.now() + 'y1', title: "Yusuf'uma Kalpten", content: "Seninle nefes almak, seninle yaşamak.\nHayatımın anlamı, en güzel kaynak." },
+                        { id: Date.now() + 'y2', title: "Yıldızların Altında", content: "Karanlık gecelerde, ışığım oldun.\nSeninle her şey, tarifsiz bir bütün." }
+                    ]
+                };
+                saveData('poems', poems);
+            }
+
+            // Yapılacaklar, Filmler, Ruh Halleri
+            const savedTodos = localStorage.getItem('todos');
+            if (savedTodos) todos = JSON.parse(savedTodos);
+            const savedMovies = localStorage.getItem('movies');
+            if (savedMovies) movies = JSON.parse(savedMovies);
+            const savedMoods = localStorage.getItem('moods');
+            if (savedMoods) moods = JSON.parse(savedMoods);
+
+            // Özel Günler
+            const savedSpecialDays = localStorage.getItem('specialDays');
+            if (savedSpecialDays) {
+                specialDays = JSON.parse(savedSpecialDays);
+            } else {
+                specialDays = [
+                    { id: Date.now() + 'sd1', date: "2024-06-15", name: "İlk Tanışma Günümüz" },
+                    { id: Date.now() + 'sd2', date: "2025-03-08", name: "İlayda'nın Doğum Günü" },
+                    { id: Date.now() + 'sd3', date: "2025-07-25", name: "Yusuf'un Doğum Günü" }
+                ];
+                saveData('specialDays', specialDays);
+            }
+
+            // Hakkımızda Metni
+            const savedAboutUsContent = localStorage.getItem('aboutUsContent');
+            if (savedAboutUsContent) {
+                aboutUsContent = JSON.parse(savedAboutUsContent);
+            } else {
+                aboutUsContent = {
+                    title: "Biz Kimiz?",
+                    intro: "Merhaba! Bu site Yusuf ve İlayda'nın, yani bizim, aşk hikayemizin dijital günlüğü. Burada anılarımızı, duygularımızı, şiirlerimizi ve gelecek planlarımızı bir araya getiriyoruz.",
+                    yusuf: "İlayda ile tanıştığım günden beri hayatımın rengi değişti. O benim ilham perim, en iyi arkadaşım ve sonsuz aşkım. Bu site, onunla yaşadığımız her özel anı ölümsüzleştirmek için bir araya getirdiğimiz küçük dünyamız.",
+                    ilayda: "Yusuf'la geçen her an bir peri masalı gibi. O benim en büyük destekçim, güvendiğim limanım ve kalbimin sahibi. Bu site, bizim için ne kadar değerli olduğunu göstermenin ve aşkımızı her zaman canlı tutmanın bir yolu.",
+                    conclusion: "Sitemizi ziyaret ettiğiniz için teşekkür ederiz. Aşkımızın hikayesine hoş geldiniz!"
+                };
+                saveData('aboutUsContent', aboutUsContent);
+            }
+        }
+
+        function saveData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        // Sayfa yüklendiğinde çalışacak kodlar
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            currentUser = urlParams.get('user');
+
+            if (!currentUser) {
+                window.location.href = 'welcome.html';
+                return;
+            }
+
+            document.title = `Aşkımızın Sitesi - ${currentUser.charAt(0).toUpperCase() + currentUser.slice(1)}`;
+            document.querySelector('.site-title').textContent = `${currentUser.charAt(0).toUpperCase() + currentUser.slice(1)} & ${currentUser === 'yusuf' ? 'İlayda' : 'Yusuf'}'nın Aşk Günlüğü`;
+            document.getElementById('partnerNameDisplay').textContent = currentUser === 'yusuf' ? 'İlayda' : 'Yusuf';
+
+            loadData();
+            updateAnniversaryCounter();
+            setInterval(updateAnniversaryCounter, 1000 * 60 * 60);
+
+            const today = new Date();
+            selectedCalendarDateKey = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`; // Başlangıçta bugünü seçili yap
+            updateDisplayDate(today);
+            displayContentForDate(selectedCalendarDateKey);
+            updateMoodDisplay(); // Kendi ve partnerin ruh halini göster
+
+            document.getElementById('displayDate').addEventListener('click', () => { // Tarih alanına tıklayınca takvim aç
+                calendarOverlay.style.display = 'flex';
+                renderCalendar(currentYear, currentMonth);
+            });
+            document.getElementById('menuButton').addEventListener('click', openNav); // Menü butonu hala menüyü açar
+
+            showPage('homePage', document.querySelector('.sidebar-menu a')); // Ana sayfayı göster
+
+            // Menüye tıklandığında ilgili fonksiyonları çağır
+            // Not: showPage fonksiyonu artık her sayfayı açtığında ilgili render fonksiyonunu çağıracak.
+        });
+
+        // --- Sayfa Geçiş Fonksiyonları ---
+        function showPage(pageId, element) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            document.querySelectorAll('.sidebar-menu a').forEach(item => {
+                item.classList.remove('active-menu-item');
+            });
+            if (element) {
+                element.classList.add('active-menu-item');
+            }
+
+            // Tüm formları kapat
+            closeMemoryForm();
+            closePoemForm();
+            closeSpecialDayForm();
+            closeAboutUsForm();
+            document.getElementById('poemDisplay').style.display = 'none'; // Şiir listesini gizle
+            document.getElementById('surpriseMemoryDisplay').innerHTML = ''; // Sürpriz anıyı temizle
+
+            // Açılan sayfaya göre içeriği yükle
+            switch (pageId) {
+                case 'galleryPage':
+                    loadGallery();
+                    break;
+                case 'poemPage':
+                    // Şiir sayfası açıldığında otomatik olarak mevcut kişinin şiirlerini göster
+                    showPoems(currentUser === 'yusuf' ? 'yusuf' : 'ilayda');
+                    break;
+                case 'todoPage':
+                    renderTodoList();
+                    break;
+                case 'moviesPage':
+                    renderMovieList();
+                    break;
+                case 'specialDaysPage':
+                    renderSpecialDays();
+                    break;
+                case 'aboutUsPage':
+                    renderAboutUsContent();
+                    break;
+                case 'homePage':
+                    // Ana sayfa için zaten displayContentForDate ve updateMoodDisplay çağrılıyor
+                    displayContentForDate(selectedCalendarDateKey); // Seçili veya bugünün anısını göster
+                    updateMoodDisplay();
+                    break;
+                // surprisePage için ekstra yükleme yok, butonla tetikleniyor
+            }
+
+            closeNav();
+        }
+
+        // --- Sidebar Menü Fonksiyonları ---
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        // --- Tarih Gösterme Fonksiyonu ---
+        function updateDisplayDate(dateObj) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('displayDate').textContent = dateObj.toLocaleDateString('tr-TR', options);
+        }
+
+        // --- Yıldönümü Sayacı ---
+        function updateAnniversaryCounter() {
+            const now = new Date();
+            const diffTime = Math.abs(now.getTime() - startDate.getTime());
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('anniversaryCounter').textContent = `İlk Tanışma Günümüzden Beri ${diffDays} Gün Geçti! ❤️`;
+        }
+
+        // --- Takvim Fonksiyonları ---
+        const calendarGrid = document.getElementById('calendarGrid');
+        const calendarMonthYear = document.getElementById('calendarMonthYear');
+        const calendarOverlay = document.getElementById('calendarOverlay');
+
+        window.changeMonth = function(offset) {
+            currentMonth += offset;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar(currentYear, currentMonth);
+        };
+
+        function renderCalendar(year, month) {
+            calendarGrid.innerHTML = `
+                <div class="day-name">Pzt</div>
+                <div class="day-name">Sal</div>
+                <div class="day-name">Çar</div>
+                <div class="day-name">Per</div>
+                <div class="day-name">Cum</div>
+                <div class="day-name">Cmt</div>
+                <div class="day-name">Paz</div>
+            `;
+
+            const date = new Date(year, month, 1);
+            calendarMonthYear.textContent = date.toLocaleDateString('tr-TR', { month: 'long', year: 'numeric' });
+
+            const firstDayIndex = (date.getDay() + 6) % 7; // Haftanın ilk günü Pazartesi
+
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('day-number');
+                calendarGrid.appendChild(emptyDiv);
+            }
+
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('day-number');
+                dayDiv.textContent = i;
+
+                const dateStringKey = `${year}-${month}-${i}`; // Key for allContent (month 0-11)
+
+                if (allContent[dateStringKey]) {
+                    dayDiv.classList.add('has-content');
+                }
+                if (dateStringKey === selectedCalendarDateKey) { // Seçili tarihi işaretle
+                    dayDiv.classList.add('selected-date');
+                }
+
+                dayDiv.addEventListener('click', () => {
+                    const selectedDate = new Date(year, month, i);
+                    updateDisplayDate(selectedDate);
+                    selectedCalendarDateKey = dateStringKey; // Yeni seçili tarihi kaydet
+                    displayContentForDate(dateStringKey);
+                    showPage('homePage');
+                    calendarOverlay.style.display = 'none';
+                });
+                calendarGrid.appendChild(dayDiv);
+            }
+        }
+
+        // --- Seçilen güne ait içeriği ana sayfada gösterme ---
+        function displayContentForDate(dateStringKey) {
+            const content = allContent[dateStringKey];
+            const mainContentDisplay = document.getElementById('mainContentDisplay');
+            mainContentDisplay.innerHTML = ''; // Önceki içeriği temizle
+
+            if (content) {
+                const titleElement = document.createElement('h2');
+                titleElement.classList.add('section-title');
+                titleElement.textContent = content.title;
+                mainContentDisplay.appendChild(titleElement);
+
+                const mediaSection = document.createElement('div');
+                mediaSection.classList.add('content-media-section');
+                content.media.forEach(item => {
+                    const mediaItemDiv = document.createElement('div');
+                    mediaItemDiv.classList.add('media-item');
+                    if (item.type === 'image') {
+                        const img = document.createElement('img');
+                        img.src = item.src;
+                        img.alt = item.alt;
+                        mediaItemDiv.appendChild(img);
+                    } else if (item.type === 'video') {
+                        const video = document.createElement('video');
+                        video.src = item.src;
+                        video.controls = true;
+                        mediaItemDiv.classList.add('video-item');
+                        mediaItemDiv.appendChild(video);
+                    }
+                    mediaSection.appendChild(mediaItemDiv);
+                });
+                mainContentDisplay.appendChild(mediaSection);
+
+                const textSection = document.createElement('div');
+                textSection.classList.add('content-text-area');
+                textSection.innerHTML = `<p>${content.text.replace(/\n/g, '<br>')}</p>`;
+                mainContentDisplay.appendChild(textSection);
+
+            } else {
+                mainContentDisplay.innerHTML = `
+                    <h2 class="section-title">Bu Güne Ait Bir Anı Yok</h2>
+                    <div class="content-media-section">
+                        <div class="media-item"><img src="https://via.placeholder.com/300x220?text=Henüz+Anı+Eklenmedi" alt="İçerik Yok"></div>
+                    </div>
+                    <div class="content-text-area">
+                        <p>Bu tarihe ait bir anı veya içerik bulunmuyor. Takvimden başka bir gün seçebilir veya <a href="javascript:void(0)" onclick="openMemoryForm()">yeni bir anı ekleyebilirsiniz</a>.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // --- Anı Ekleme/Düzenleme Fonksiyonları ---
+        function openMemoryForm(dateKey = null) {
+            showPage('galleryPage'); // Galeri sayfasını açık tut
+            document.getElementById('memoryFormSection').style.display = 'block';
+            document.getElementById('deleteMemoryButton').style.display = 'none';
+
+            // Formu temizle
+            document.getElementById('memoryDateKey').value = '';
+            document.getElementById('memoryTitle').value = '';
+            document.getElementById('memoryDate').value = '';
+            document.getElementById('memoryText').value = '';
+            document.getElementById('mediaInputs').innerHTML = `
+                <div class="media-input-group">
+                    <input type="text" class="media-url-input" placeholder="Resim veya Video URL'si (örn: https://...)" oninput="updateMediaPreview()">
+                    <button type="button" onclick="addMediaInput()">+</button>
+                </div>
+            `;
+            document.getElementById('mediaPreview').innerHTML = '';
+
+            if (dateKey && allContent[dateKey]) { // Anı düzenleniyorsa
+                const memory = allContent[dateKey];
+                document.getElementById('memoryDateKey').value = dateKey;
+                document.getElementById('memoryTitle').value = memory.title;
+
+                // Tarihi YYYY-MM-DD formatına dönüştür (Date objesindeki ay 0-11 olduğu için dateKey'den direkt al)
+                const dateParts = dateKey.split('-');
+                // Date input'u için ay 1 eksik geliyordu, o yüzden +1 yapılıyordu, şimdi tarih objesini doğru parse edip toISOString ile direkt alalım
+                const dateForInput = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]), parseInt(dateParts[2]) + 1);
+                document.getElementById('memoryDate').value = dateForInput.toISOString().substring(0, 10);
+
+
+                document.getElementById('memoryText').value = memory.text;
+
+                // Medyayı yükle
+                document.getElementById('mediaInputs').innerHTML = ''; // Öncekileri temizle
+                if (memory.media && memory.media.length > 0) {
+                    memory.media.forEach(mediaItem => {
+                        addMediaInput(mediaItem.src); // type otomatik algılanacak
+                    });
+                }
+                addMediaInput(); // Sonuna boş bir tane daha ekle (yeni eklemeye hazır)
+
+                document.getElementById('deleteMemoryButton').style.display = 'inline-block';
+            }
+        }
+
+        function closeMemoryForm() {
+            document.getElementById('memoryFormSection').style.display = 'none';
+        }
+
+        window.addMediaInput = function(url = '') {
+            const mediaInputsDiv = document.getElementById('mediaInputs');
+            const newMediaInputGroup = document.createElement('div');
+            newMediaInputGroup.classList.add('media-input-group');
+            newMediaInputGroup.innerHTML = `
+                <input type="text" class="media-url-input" placeholder="Resim veya Video URL'si (örn: https://...)" value="${url}" oninput="updateMediaPreview()">
+                <button type="button" onclick="removeMediaInput(this)">-</button>
+                <button type="button" onclick="addMediaInput()">+</button>
+            `;
+            mediaInputsDiv.appendChild(newMediaInputGroup);
+            updateMediaPreview(); // Her eklemede/silmede önizlemeyi güncelle
+
+            // Sadece son eklenen inputta '+' butonu olsun, diğerlerinde sadece '-'
+            const allAddButtons = mediaInputsDiv.querySelectorAll('.media-input-group button:last-of-type');
+            allAddButtons.forEach((btn, index) => {
+                if (index < allAddButtons.length - 1) {
+                    btn.style.display = 'none'; // Önceki '+' butonlarını gizle
+                } else {
+                    btn.style.display = 'inline-block'; // Sonuncuyu göster
+                }
+            });
+        }
+
+        window.removeMediaInput = function(button) {
+            const mediaInputsDiv = document.getElementById('mediaInputs');
+            const inputGroup = button.closest('.media-input-group');
+            mediaInputsDiv.removeChild(inputGroup);
+            updateMediaPreview();
+            // Son inputta '+' butonu olduğundan emin ol
+            const allAddButtons = mediaInputsDiv.querySelectorAll('.media-input-group button:last-of-type');
+            if (allAddButtons.length > 0) {
+                allAddButtons[allAddButtons.length - 1].style.display = 'inline-block';
+            } else { // Hiç input kalmadıysa bir tane boş ekle
+                addMediaInput();
+            }
+        }
+
+        function updateMediaPreview() {
+            const mediaPreviewDiv = document.getElementById('mediaPreview');
+            mediaPreviewDiv.innerHTML = '';
+            const mediaInputs = document.querySelectorAll('.media-url-input');
+
+            mediaInputs.forEach(input => {
+                const url = input.value.trim();
+                if (url) {
+                    const thumbnailDiv = document.createElement('div');
+                    thumbnailDiv.classList.add('media-item-thumbnail');
+
+                    let mediaElement;
+                    // URL'nin sonuna bakarak resim veya video tipi belirleme
+                    if (url.match(/\.(jpeg|jpg|gif|png|webp)$/i)) {
+                        mediaElement = document.createElement('img');
+                        mediaElement.src = url;
+                        mediaElement.alt = "Önizleme";
+                    } else if (url.match(/\.(mp4|webm|ogg)$/i)) {
+                        mediaElement = document.createElement('video');
+                        mediaElement.src = url;
+                        mediaElement.muted = true;
+                        mediaElement.autoplay = false;
+                        mediaElement.loop = true;
+                        mediaElement.load();
+                    } else {
+                        mediaElement = document.createElement('img');
+                        mediaElement.src = 'https://via.placeholder.com/100x80?text=Geçersiz+URL';
+                        mediaElement.alt = "Geçersiz URL";
+                    }
+                    thumbnailDiv.appendChild(mediaElement);
+
+                    const removeBtn = document.createElement('button');
+                    removeBtn.classList.add('remove-media-btn');
+                    removeBtn.textContent = 'X';
+                    removeBtn.onclick = () => {
+                        thumbnailDiv.remove(); // Önizlemeyi kaldır
+                        // İlgili inputu da bulup kaldırmak lazım
+                        // Bu kısım biraz karmaşıklaşabilir, şimdilik sadece görselden kaldırıyoruz.
+                        // En kolay yolu tüm inputları yeniden render etmek veya input grubunu kaldırmaktır.
+                        // Basit tutmak için, form kaydedildiğinde sadece geçerli URL'leri alacağız.
+                    };
+                    // Her resmin kendi remove butonu olacak, ancak formdaki inputu kaldırmaz.
+                    // En iyi çözüm, removeMediaInput fonksiyonunu input ile ilişkilendirerek çağırmaktır.
+                    // Şimdilik sadece görsel önizlemeyi kaldıracak.
+                    // Daha robust bir çözüm için, removeMediaInput'u her input grubuna özel olarak bağlamak gerekir.
+                    // Şu anki addMediaInput ve removeMediaInput fonksiyonları zaten bunu yapıyor.
+                    // Bu thumbnail remove butonu görsel amaçlıdır, asıl silme işlemi addMediaInput'taki - butonuyladır.
+                    // thumbnailDiv.appendChild(removeBtn); // Şu an için bu butona gerek yok, kafa karıştırmasın.
+                    mediaPreviewDiv.appendChild(thumbnailDiv);
+                }
+            });
+        }
+
+        window.saveMemory = function() {
+            const id = document.getElementById('memoryDateKey').value;
+            const title = document.getElementById('memoryTitle').value.trim();
+            const date = document.getElementById('memoryDate').value;
+            const text = document.getElementById('memoryText').value.trim();
+            const mediaUrls = Array.from(document.querySelectorAll('#mediaInputs .media-url-input')) // Sadece formdaki inputları al
+                                 .map(input => input.value.trim())
+                                 .filter(url => url !== ''); // Boş URL'leri filtrele
+
+            if (!title || !date || !text) {
+                alert("Lütfen başlık, tarih ve anı metnini doldurun.");
+                return;
+            }
+
+            const dateObj = new Date(date);
+            // Date nesnesindeki ay 0-11 arası olduğu için direkt kullanıyoruz.
+            // YYYY-AY-GÜN formatında key oluşturuyoruz.
+            const newDateKey = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDate()}`;
+
+            const mediaArray = mediaUrls.map(url => {
+                if (url.match(/\.(jpeg|jpg|gif|png|webp)$/i)) {
+                    return { type: "image", src: url, alt: title };
+                } else if (url.match(/\.(mp4|webm|ogg)$/i)) {
+                    return { type: "video", src: url };
+                }
+                return null; // Desteklenmeyen formatları atla
+            }).filter(item => item !== null);
+
+            const newMemory = {
+                id: newDateKey, // Date key'i ID olarak kullan
+                title: title,
+                text: text,
+                media: mediaArray
+            };
+
+            // Eğer zaten bu tarihte bir anı varsa üzerine yaz, yoksa yeni ekle
+            allContent[newDateKey] = newMemory;
+
+            saveData('allContent', allContent);
+            loadGallery(); // Galeriyi güncelle
+
+            // Seçili takvim tarihini günceller ve ana sayfayı o tarihe göre yeniden yükler
+            selectedCalendarDateKey = newDateKey;
+            updateDisplayDate(new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate()));
+            displayContentForDate(newDateKey); 
+
+            closeMemoryForm();
+            alert("Anı başarıyla kaydedildi!");
+            renderCalendar(currentYear, currentMonth); // Takvimdeki işaretlemeyi güncelle
+        };
+
+        window.deleteMemory = function() {
+            const idToDelete = document.getElementById('memoryDateKey').value;
+            if (confirm("Bu anıyı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.")) {
+                delete allContent[idToDelete];
+                saveData('allContent', allContent);
+                loadGallery();
+
+                // Silinen anı takvimde seçiliyse, ana sayfayı bugüne çevir
+                if (selectedCalendarDateKey === idToDelete) {
+                    const today = new Date();
+                    selectedCalendarDateKey = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+                    updateDisplayDate(today);
+                    displayContentForDate(selectedCalendarDateKey);
+                }
+                closeMemoryForm();
+                alert("Anı başarıyla silindi.");
+                renderCalendar(currentYear, currentMonth); // Takvimdeki işaretlemeyi güncelle
+            }
+        };
+
+        // --- Galeri Yükleme ---
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+
+            let allMediaItems = [];
+            for (const dateKey in allContent) {
+                const content = allContent[dateKey];
+                // dateKey formatı YYYY-AY-GÜN olduğundan, Date objesi için ayı doğru ayarla
+                const dateParts = dateKey.split('-');
+                const displayDateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]), parseInt(dateParts[2]));
+
+                content.media.forEach((media, index) => {
+                    allMediaItems.push({
+                        dateKey: dateKey,
+                        displayDate: displayDateObj,
+                        title: content.title,
+                        media: media,
+                        index: index
+                    });
+                });
+            }
+
+            allMediaItems.sort((a, b) => b.displayDate - a.displayDate); // En yeni önce
+
+            if (allMediaItems.length > 0) {
+                allMediaItems.forEach(item => {
+                    const galleryItemDiv = document.createElement('div');
+                    galleryItemDiv.classList.add('gallery-item');
+
+                    let mediaElement;
+                    if (item.media.type === 'image') {
+                        mediaElement = document.createElement('img');
+                        mediaElement.src = item.media.src;
+                        mediaElement.alt = item.media.alt || `Galeri Fotoğrafı ${item.dateKey}-${item.index}`;
+                    } else if (item.media.type === 'video') {
+                        mediaElement = document.createElement('video');
+                        mediaElement.src = item.media.src;
+                        mediaElement.controls = false;
+                        mediaElement.muted = true;
+                        mediaElement.autoplay = false;
+                        mediaElement.loop = true;
+                        mediaElement.load();
+                        galleryItemDiv.classList.add('video-item');
+                    }
+                    galleryItemDiv.appendChild(mediaElement);
+
+                    const titleSpan = document.createElement('span');
+                    titleSpan.classList.add('gallery-item-title');
+                    const formattedDateForTitle = item.displayDate.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric' });
+                    titleSpan.textContent = item.title + ` (${formattedDateForTitle})`;
+                    galleryItemDiv.appendChild(titleSpan);
+
+                    galleryItemDiv.addEventListener('click', () => {
+                        updateDisplayDate(item.displayDate);
+                        selectedCalendarDateKey = item.dateKey; // Galeriden seçilen anıyı takvimde seçili yap
+                        displayContentForDate(item.dateKey);
+                        showPage('homePage');
+                    });
+                    galleryGrid.appendChild(galleryItemDiv);
+                });
+            } else {
+                galleryGrid.innerHTML = '<p style="text-align: center; width: 100%;">Henüz galeriye eklenmiş bir medya yok. Yeni bir anı ekleyerek başlayın!</p>';
+            }
+        }
+
+
+        // --- Ruh Hali Yönetimi (Ana Sayfada) ---
+        function updateMoodDisplay() {
+            const myMoodSelector = document.getElementById('moodSelector');
+            const myMoodDisplayElement = document.getElementById('myMoodDisplay');
+            const partnerMoodDisplayElement = document.getElementById('partnerMoodDisplay');
+            const moodReasonInput = document.getElementById('moodReasonInput');
+
+            const todayKey = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+
+            // Kendi ruh halimi göster
+            if (moods[todayKey] && moods[todayKey][currentUser]) {
+                myMoodSelector.value = moods[todayKey][currentUser].mood;
+                myMoodDisplayElement.textContent = getMoodEmoji(moods[todayKey][currentUser].mood);
+                moodReasonInput.value = moods[todayKey][currentUser].reason || '';
+            } else {
+                myMoodSelector.value = 'happy'; // Varsayılan
+                myMoodDisplayElement.textContent = 'Henüz kaydetmedin.';
+                moodReasonInput.value = '';
+            }
+
+            // Partnerin ruh halini göster
+            const partner = currentUser === 'yusuf' ? 'ilayda' : 'yusuf';
+            if (moods[todayKey] && moods[todayKey][partner]) {
+                partnerMoodDisplayElement.textContent = `${getMoodEmoji(moods[todayKey][partner].mood)}${moods[todayKey][partner].reason ? ' (' + moods[todayKey][partner].reason + ')' : ''}`;
+            } else {
+                partnerMoodDisplayElement.textContent = 'Henüz kaydetmedi.';
+            }
+        }
+
+        window.saveMood = function() {
+            const mood = document.getElementById('moodSelector').value;
+            const reason = document.getElementById('moodReasonInput').value.trim();
+            const moodText = document.getElementById('moodSelector').options[document.getElementById('moodSelector').selectedIndex].text;
+
+            const todayKey = new Date().toLocaleDateString('en-CA');
+
+            if (!moods[todayKey]) {
+                moods[todayKey] = {};
+            }
+            moods[todayKey][currentUser] = { mood: mood, reason: reason };
+
+            saveData('moods', moods);
+            alert(`${currentUser.charAt(0).toUpperCase() + currentUser.slice(1)} olarak ruh halinizi '${moodText}' olarak kaydettiniz!`);
+            updateMoodDisplay(); // Hem kendi hem partnerin ruh halini güncelle
+        };
+
+        function getMoodEmoji(moodValue) {
+            switch (moodValue) {
+                case 'happy': return '😄 Mutlu';
+                case 'sad': return '😔 Üzgün';
+                case 'excited': return '🥳 Heyecanlı';
+                case 'calm': return '😌 Sakin';
+                case 'angry': return '😡 Kızgın';
+                case 'loving': return '💖 Aşık';
+                default: return '';
+            }
+        }
+
+        // --- Şiirleri Gösterme ve Yönetme Fonksiyonları ---
+        let currentPoemListPerson = '';
+
+        window.showPoems = function(person) {
+            currentPoemListPerson = person;
+            const poemDisplay = document.getElementById('poemDisplay');
+            poemDisplay.innerHTML = '';
+            poemDisplay.style.display = 'block';
+            closePoemForm();
+
+            const selectedPoems = poems[person];
+            if (selectedPoems && selectedPoems.length > 0) {
+                const poemListDiv = document.createElement('div');
+                poemListDiv.classList.add('selection-list');
+                // Şiirleri ID'ye göre değil, eklenme sırasına göre gösterelim (veya ters tarihe göre)
+                // Eğer spesifik bir sıralama istenirse burada yapılabilir.
+                selectedPoems.forEach((poem) => {
+                    const poemItemDiv = document.createElement('div');
+                    poemItemDiv.textContent = poem.title;
+                    poemItemDiv.onclick = () => editPoem(poem.id); // ID ile düzenleme
+                    poemListDiv.appendChild(poemItemDiv);
+                });
+                poemDisplay.appendChild(poemListDiv);
+            } else {
+                poemDisplay.innerHTML = `<p style="text-align: center;">${person.charAt(0).toUpperCase() + person.slice(1)} için henüz şiir yok. Yeni bir şiir ekleyin!</p>`;
+            }
+        };
+
+        window.openPoemForm = function() {
+            showPage('poemPage');
+            document.getElementById('poemFormSection').style.display = 'block';
+            document.getElementById('deletePoemButton').style.display = 'none';
+
+            // Formu temizle
+            document.getElementById('poemId').value = '';
+            document.getElementById('poemTitle').value = '';
+            document.getElementById('poemRecipient').value = currentPoemListPerson || 'ilayda';
+            document.getElementById('poemContent').value = '';
+
+            document.getElementById('poemDisplay').style.display = 'none'; // Şiir listesini gizle
+        };
+
+        function closePoemForm() {
+            document.getElementById('poemFormSection').style.display = 'none';
+            document.getElementById('poemDisplay').style.display = 'block'; // Şiir listesini tekrar göster
+        }
+
+        window.editPoem = function(poemId) {
+            openPoemForm();
+            let foundPoem = null;
+            let recipientType = '';
+            for (const person in poems) {
+                foundPoem = poems[person].find(p => p.id === poemId);
+                if (foundPoem) {
+                    recipientType = person;
+                    break;
+                }
+            }
+
+            if (foundPoem) {
+                document.getElementById('poemId').value = poemId;
+                document.getElementById('poemTitle').value = foundPoem.title;
+                document.getElementById('poemRecipient').value = recipientType;
+                document.getElementById('poemContent').value = foundPoem.content;
+                document.getElementById('deletePoemButton').style.display = 'inline-block';
+            }
+        };
+
+        window.savePoem = function() {
+            const poemId = document.getElementById('poemId').value;
+            const title = document.getElementById('poemTitle').value.trim();
+            const recipient = document.getElementById('poemRecipient').value;
+            const content = document.getElementById('poemContent').value.trim();
+
+            if (!title || !content) {
+                alert("Lütfen şiir başlığını ve metnini doldurun.");
+                return;
+            }
+
+            if (poemId) { // Var olan bir şiir düzenleniyorsa
+                for (const person in poems) {
+                    const index = poems[person].findIndex(p => p.id === poemId);
+                    if (index !== -1) {
+                        // Eğer şiirin alıcısı değişirse
+                        if (person !== recipient) {
+                            // Eski listeden kaldır, yeniye ekle
+                            const [removedPoem] = poems[person].splice(index, 1);
+                            removedPoem.title = title;
+                            removedPoem.content = content;
+                            poems[recipient].push(removedPoem);
+                        } else {
+                            // Aynı listede güncelle
+                            poems[person][index].title = title;
+                            poems[person][index].content = content;
+                        }
+                        break;
+                    }
+                }
+                alert("Şiir başarıyla güncellendi!");
+            } else { // Yeni şiir ekleniyorsa
+                poems[recipient].push({ id: Date.now().toString(), title: title, content: content });
+                alert("Yeni şiir başarıyla eklendi!");
+            }
+
+            saveData('poems', poems);
+            closePoemForm();
+            showPoems(recipient); // Güncel listeyi göster
+        };
+
+        window.deletePoem = function() {
+            const poemId = document.getElementById('poemId').value;
+            if (!poemId) return;
+
+            if (confirm("Bu şiiri silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.")) {
+                let recipientPerson = '';
+                for (const person in poems) {
+                    const index = poems[person].findIndex(p => p.id === poemId);
+                    if (index !== -1) {
+                        poems[person].splice(index, 1);
+                        recipientPerson = person;
+                        break;
+                    }
+                }
+                saveData('poems', poems);
+                closePoemForm();
+                showPoems(recipientPerson);
+                alert("Şiir başarıyla silindi.");
+            }
+        };
+
+
+        // --- Yapılacaklar Listesi ve Film Listesi Yönetimi (LocalStorage ile kalıcı) ---
+        function renderTodoList() {
+            const todoListDiv = document.getElementById('todoList');
+            todoListDiv.innerHTML = '';
+            if (todos.length === 0) {
+                todoListDiv.innerHTML = '<p style="color: #888;">Henüz yapılacak bir görev yok.</p>';
+                return;
+            }
+            todos.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('list-item');
+                if (item.completed) {
+                    itemDiv.classList.add('completed');
+                }
+                itemDiv.innerHTML = `
+                    <input type="checkbox" id="todo-${index}" ${item.completed ? 'checked' : ''} onchange="toggleTodoCompletion(${index})">
+                    <label for="todo-${index}">${item.text}</label>
+                `;
+                todoListDiv.appendChild(itemDiv);
+            });
+        }
+
+        window.addTodo = function() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            if (text) {
+                todos.push({ text: text, completed: false });
+                input.value = '';
+                saveData('todos', todos);
+                renderTodoList();
+            }
+        };
+
+        window.toggleTodoCompletion = function(index) {
+            todos[index].completed = !todos[index].completed;
+            saveData('todos', todos);
+            renderTodoList();
+        };
+
+        function renderMovieList() {
+            const movieListDiv = document.getElementById('movieList');
+            movieListDiv.innerHTML = '';
+            if (movies.length === 0) {
+                movieListDiv.innerHTML = '<p style="color: #888;">Henüz izlenecek film/dizi yok.</p>';
+                return;
+            }
+            movies.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('list-item');
+                if (item.completed) {
+                    itemDiv.classList.add('completed');
+                }
+                itemDiv.innerHTML = `
+                    <input type="checkbox" id="movie-${index}" ${item.completed ? 'checked' : ''} onchange="toggleMovieCompletion(${index})">
+                    <label for="movie-${index}">${item.text}</label>
+                `;
+                movieListDiv.appendChild(itemDiv);
+            });
+        }
+
+        window.addMovie = function() {
+            const input = document.getElementById('movieInput');
+            const text = input.value.trim();
+            if (text) {
+                movies.push({ text: text, completed: false });
+                input.value = '';
+                saveData('movies', movies);
+                renderMovieList();
+            }
+        };
+
+        window.toggleMovieCompletion = function(index) {
+            movies[index].completed = !movies[index].completed;
+            saveData('movies', movies);
+            renderMovieList();
+        };
+
+        // --- Özel Günleri Listeleme ve Yönetme ---
+        function renderSpecialDays() {
+            const specialDayListUl = document.getElementById('specialDayList');
+            specialDayListUl.innerHTML = '';
+
+            // En eski tarihten en yeniye sırala
+            const sortedSpecialDays = [...specialDays].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            if (sortedSpecialDays.length > 0) {
+                sortedSpecialDays.forEach(day => {
+                    const listItem = document.createElement('li');
+                    listItem.dataset.id = day.id; // Düzenleme/Silme için ID
+
+                    const dateObj = new Date(day.date);
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedDate = dateObj.toLocaleDateString('tr-TR', options);
+
+                    listItem.innerHTML = `<span>${day.name}</span><span>${formattedDate}</span>`;
+                    listItem.onclick = () => editSpecialDay(day.id); // Tıklayınca düzenle
+                    specialDayListUl.appendChild(listItem);
+                });
+            } else {
+                specialDayListUl.innerHTML = '<p style="text-align: center; color: #888;">Henüz tanımlanmış özel gün yok. Yeni bir özel gün ekleyin!</p>';
+            }
+        }
+
+        window.openSpecialDayForm = function() {
+            showPage('specialDaysPage');
+            document.getElementById('specialDayFormSection').style.display = 'block';
+            document.getElementById('deleteSpecialDayButton').style.display = 'none';
+
+            // Formu temizle
+            document.getElementById('specialDayId').value = '';
+            document.getElementById('specialDayName').value = '';
+            document.getElementById('specialDayDate').value = '';
+        };
+
+        function closeSpecialDayForm() {
+            document.getElementById('specialDayFormSection').style.display = 'none';
+        }
+
+        window.editSpecialDay = function(id) {
+            openSpecialDayForm();
+            const dayToEdit = specialDays.find(day => day.id === id);
+            if (dayToEdit) {
+                document.getElementById('specialDayId').value = dayToEdit.id;
+                document.getElementById('specialDayName').value = dayToEdit.name;
+                document.getElementById('specialDayDate').value = dayToEdit.date; // YYYY-MM-DD formatında gelir
+                document.getElementById('deleteSpecialDayButton').style.display = 'inline-block';
+            }
+        };
+
+        window.saveSpecialDay = function() {
+            const id = document.getElementById('specialDayId').value;
+            const name = document.getElementById('specialDayName').value.trim();
+            const date = document.getElementById('specialDayDate').value; // YYYY-MM-DD
+
+            if (!name || !date) {
+                alert("Lütfen özel gün adını ve tarihini doldurun.");
+                return;
+            }
+
+            if (id) { // Düzenleniyorsa
+                const index = specialDays.findIndex(day => day.id === id);
+                if (index !== -1) {
+                    specialDays[index] = { id: id, name: name, date: date };
+                }
+                alert("Özel gün başarıyla güncellendi!");
+            } else { // Yeni ekleniyorsa
+                specialDays.push({ id: Date.now().toString(), name: name, date: date });
+                alert("Yeni özel gün başarıyla eklendi!");
+            }
+            saveData('specialDays', specialDays);
+            closeSpecialDayForm();
+            renderSpecialDays();
+        };
+
+        window.deleteSpecialDay = function() {
+            const idToDelete = document.getElementById('specialDayId').value;
+            if (!idToDelete) return;
+
+            if (confirm("Bu özel günü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.")) {
+                specialDays = specialDays.filter(day => day.id !== idToDelete);
+                saveData('specialDays', specialDays);
+                closeSpecialDayForm();
+                renderSpecialDays();
+                alert("Özel gün başarıyla silindi.");
+            }
+        };
+
+        // --- Hakkımızda Metni Yönetimi ---
+        function renderAboutUsContent() {
+            const displayDiv = document.getElementById('aboutUsContentDisplay');
+            displayDiv.innerHTML = `
+                <h3>${aboutUsContent.title || 'Başlık Yok'}</h3>
+                <p>${(aboutUsContent.intro || '').replace(/\n/g, '<br>')}</p>
+                <h3>Yusuf'un Gözünden:</h3>
+                <p>${(aboutUsContent.yusuf || '').replace(/\n/g, '<br>')}</p>
+                <h3>İlayda'nın Gözünden:</h3>
+                <p>${(aboutUsContent.ilayda || '').replace(/\n/g, '<br>')}</p>
+                <p>${(aboutUsContent.conclusion || '').replace(/\n/g, '<br>')}</p>
+            `;
+        }
+
+        window.openAboutUsForm = function() {
+            showPage('aboutUsPage');
+            document.getElementById('aboutUsFormSection').style.display = 'block';
+            document.getElementById('aboutUsContentDisplay').style.display = 'none'; // Gizle
+
+            document.getElementById('aboutUsTitle').value = aboutUsContent.title || '';
+            document.getElementById('aboutUsIntro').value = aboutUsContent.intro || '';
+            document.getElementById('yusufAbout').value = aboutUsContent.yusuf || '';
+            document.getElementById('ilaydaAbout').value = aboutUsContent.ilayda || '';
+            document.getElementById('aboutUsConclusion').value = aboutUsContent.conclusion || '';
+        };
+
+        function closeAboutUsForm() {
+            document.getElementById('aboutUsFormSection').style.display = 'none';
+            document.getElementById('aboutUsContentDisplay').style.display = 'block'; // Göster
+        }
+
+        window.saveAboutUsContent = function() {
+            aboutUsContent.title = document.getElementById('aboutUsTitle').value.trim();
+            aboutUsContent.intro = document.getElementById('aboutUsIntro').value.trim();
+            aboutUsContent.yusuf = document.getElementById('yusufAbout').value.trim();
+            aboutUsContent.ilayda = document.getElementById('ilaydaAbout').value.trim();
+            aboutUsContent.conclusion = document.getElementById('aboutUsConclusion').value.trim();
+
+            saveData('aboutUsContent', aboutUsContent);
+            renderAboutUsContent();
+            closeAboutUsForm();
+            alert("Hakkımızda metni başarıyla güncellendi!");
+        };
+
+        // --- Sürpriz Anılar Bölümü ---
+        window.showRandomMemory = function() {
+            const allMemoryKeys = Object.keys(allContent);
+            if (allMemoryKeys.length === 0) {
+                document.getElementById('surpriseMemoryDisplay').innerHTML = '<p style="text-align: center;">Henüz kaydedilmiş anı yok! Galeriye ekleyerek başlayın.</p>';
+                return;
+            }
+            const randomIndex = Math.floor(Math.random() * allMemoryKeys.length);
+            const randomDateKey = allMemoryKeys[randomIndex];
+            const randomMemory = allContent[randomDateKey];
+
+            const surpriseDisplayDiv = document.getElementById('surpriseMemoryDisplay');
+            surpriseDisplayDiv.innerHTML = ''; // Önceki sürpriz anıyı temizle
+
+            const titleElement = document.createElement('h3');
+            titleElement.classList.add('section-title');
+            const dateParts = randomDateKey.split('-');
+            const displayDateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]), parseInt(dateParts[2]));
+            const formattedDate = displayDateObj.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+            titleElement.textContent = `${randomMemory.title} (${formattedDate})`;
+            surpriseDisplayDiv.appendChild(titleElement);
+
+            const mediaSection = document.createElement('div');
+            mediaSection.classList.add('content-media-section');
+            randomMemory.media.forEach(item => {
+                const mediaItemDiv = document.createElement('div');
+                mediaItemDiv.classList.add('media-item');
+                if (item.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = item.alt;
+                    mediaItemDiv.appendChild(img);
+                } else if (item.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = item.src;
+                    video.controls = true;
+                    mediaItemDiv.classList.add('video-item');
+                    mediaItemDiv.appendChild(video);
+                }
+                mediaSection.appendChild(mediaItemDiv);
+            });
+            surpriseDisplayDiv.appendChild(mediaSection);
+
+            const textSection = document.createElement('div');
+            textSection.classList.add('content-text-area');
+            textSection.innerHTML = `<p>${randomMemory.text.replace(/\n/g, '<br>')}</p>`;
+            surpriseDisplayDiv.appendChild(textSection);
+        };
+
+    </script>
+</body>
+</html>
