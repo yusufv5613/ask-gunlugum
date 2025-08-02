@@ -2043,5 +2043,34 @@
         };
 
     </script>
+<script type="module">
+        // Firebase yapılandırma bilgilerinizi buraya yapıştır
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+        // Kendi Firebase yapılandırma bilgilerini buraya yapıştır
+        const firebaseConfig = {
+            apiKey: "AIzaSyDfWrVUFGG1VRpEnt6_jwtUrYrGYzN31Pk", // Burayı kendi API Key'inle değiştir
+            authDomain: "yusuf-ilayda-ask.firebaseapp.com", // Burayı kendi Auth Domain'inle değiştir
+            projectId: "yusuf-ilayda-ask", // Burayı kendi Project ID'inle değiştir
+            storageBucket: "yusuf-ilayda-ask.firebasestorage.app", // Burayı kendi Storage Bucket'ınla değiştir
+            messagingSenderId: "593637038979", // Burayı kendi Messaging Sender ID'inle değiştir
+            appId: "1:593637038979:web:0c27dba9afa9c28c1574b6" // Burayı kendi App ID'inle değiştir
+        };
+
+        // Firebase'i başlat
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app); // Firestore'u başlat
+
+        // db nesnesini genel kapsamda erişilebilir kıl (script.js'den erişim için)
+        window.db = db;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.getDocs = getDocs;
+        window.doc = doc;
+        window.updateDoc = updateDoc;
+        window.deleteDoc = deleteDoc;
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
